@@ -9,30 +9,30 @@ import java.util.List;
 
 public class InputStreamToListReader {
     private final InputStream inputStream;
-    private final List<String> dictionary;
+    private final List<String> wordsList;
 
     public InputStreamToListReader(InputStream inputStream) {
         this.inputStream = inputStream;
-        dictionary = new ArrayList<>();
+        wordsList = new ArrayList<>();
     }
 
-    public List<String> getDictionary() throws IOException {
+    public List<String> getWordsList() throws IOException {
         try (BufferedReader br = new BufferedReader(
                 new InputStreamReader(inputStream))) {
             String inputLine;
             while ((inputLine = br.readLine()) != null) {
-                dictionary.add(inputLine);
+                wordsList.add(inputLine);
             }
         }
 
-        return dictionary;
+        return wordsList;
     }
 
     @Override
     public String toString() {
         return "InputStreamToListReader" + "[" +
                 "inputStream=" + inputStream +
-                ", dictionary=" + dictionary +
+                ", wordsListSize=" + wordsList.size() +
                 ']';
     }
 }

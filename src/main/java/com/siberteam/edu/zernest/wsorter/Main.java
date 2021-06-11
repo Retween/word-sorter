@@ -48,7 +48,7 @@ public class Main {
                     new InputStreamToListReader(inputStream);
             ListToOutputStreamWriter writer =
                     new ListToOutputStreamWriter(outputStream);
-            List<String> words = reader.getDictionary();
+            List<String> words = reader.getWordsList();
 
             @SuppressWarnings("unchecked")
             Comparator<String> comparator = (Comparator<String>)
