@@ -34,11 +34,11 @@ public class Main {
                         inputFile.getName());
             }
 
-//            if (outputFile.exists() && outputFile.isFile()) {
-//                throw new WordSorterAppException(
-//                        WordSorterExitCode.FILE_ALREADY_EXISTS,
-//                        outputFile.getName());
-//            }
+            if (outputFile.exists() && outputFile.isFile()) {
+                throw new WordSorterAppException(
+                        WordSorterExitCode.FILE_ALREADY_EXISTS,
+                        outputFile.getName());
+            }
 
             inputStream = new FileInputStream(inputFile);
             outputStream = new FileOutputStream(outputFile);
