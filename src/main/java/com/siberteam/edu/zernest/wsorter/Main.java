@@ -1,6 +1,6 @@
 package com.siberteam.edu.zernest.wsorter;
 
-import org.apache.commons.cli.*;
+import org.apache.commons.cli.ParseException;
 
 import java.io.*;
 import java.util.Comparator;
@@ -10,29 +10,12 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-
-        Options options = new Options();
-        CommandLineParser parser = new DefaultParser();
-
-        options.addRequiredOption("i", "inputFile", true,
-                "File with URL addresses list");
-        options.addRequiredOption("o", "outputFile", true,
-                "Output file for recording the result");
-        options.addRequiredOption("c", "sortClass", true,
-                "Full qualified name of Sorter class");
-
-        final HelpFormatter formatter = new HelpFormatter();
-        final String syntax = "Main";
-        final String usageHeader = "Example of Using word-sorter app";
-        final String usageFooter = "Usage example: -i inputFile.txt -o " +
-                "outputFile.txt -c com.edu.sorters.AlphabeticalSorter";
-
+        CommandLineValidator validator = new CommandLineValidator();
         try {
-            CommandLine cmd = parser.parse(options, args);
-
-            File inputFile = new File(cmd.getOptionValue("i"));
-            File outputFile = new File(cmd.getOptionValue("o"));
-            Class<?> loadedSorterClass = Class.forName(cmd.getOptionValue("c"));
+            validator.parseCommandLine(args);
+            File inputFile = validator.getInputFile();
+            File outputFile = validator.getOutputFile();
+            Class<?> loadedSorterClass = validator.getLoadedSorterClass();
 
             if (!inputFile.exists()) {
                 throw new WordSorterAppException(
@@ -65,7 +48,7 @@ public class Main {
             }
         } catch (Exception e) {
             if (e instanceof ParseException) {
-                formatter.printHelp(syntax, usageHeader, options, usageFooter);
+                validator.printHelp();
                 defaultHandler.handleException(WordSorterExitCode
                         .COMMAND_LINE_USAGE, e);
             }

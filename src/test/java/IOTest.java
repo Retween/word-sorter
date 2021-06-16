@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.imageio.IIOException;
 import java.io.*;
 import java.util.ArrayList;
 
