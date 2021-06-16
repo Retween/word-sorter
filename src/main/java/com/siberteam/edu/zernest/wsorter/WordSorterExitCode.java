@@ -18,7 +18,6 @@ public enum WordSorterExitCode {
         this.description = description;
     }
 
-
     public int getCode() {
         return code;
     }

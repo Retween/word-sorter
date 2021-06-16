@@ -9,11 +9,6 @@ public class WordSorterAppException extends Exception {
         this.exitCode = exitCode;
     }
 
-    public WordSorterAppException(WordSorterExitCode exitCode) {
-        super("Word Sorter App Exception");
-        this.exitCode = exitCode;
-    }
-
     public WordSorterExitCode getExitCode() {
         return exitCode;
     }

@@ -24,7 +24,7 @@ public class Main {
         final HelpFormatter formatter = new HelpFormatter();
         final String syntax = "Main";
         final String usageHeader = "Example of Using word-sorter app";
-        final String usageFooter = "Example: -i inputFile.txt -o " +
+        final String usageFooter = "Usage example: -i inputFile.txt -o " +
                 "outputFile.txt -c com.edu.sorters.AlphabeticalSorter";
 
         try {
@@ -40,11 +40,11 @@ public class Main {
                         inputFile.getName());
             }
 
-//            if (outputFile.exists() && outputFile.isFile()) {
-//                throw new WordSorterAppException(
-//                        WordSorterExitCode.FILE_ALREADY_EXISTS,
-//                        outputFile.getName());
-//            }
+            if (outputFile.exists() && outputFile.isFile()) {
+                throw new WordSorterAppException(
+                        WordSorterExitCode.FILE_ALREADY_EXISTS,
+                        outputFile.getName());
+            }
             try (InputStream inputStream = new FileInputStream(inputFile);
                  OutputStream outputStream = new FileOutputStream(outputFile)) {
 
