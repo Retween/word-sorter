@@ -23,14 +23,13 @@ public class Main {
                         inputFile.getName());
             }
 
-            if (outputFile.exists() && outputFile.isFile()) {
-                throw new WordSorterAppException(
-                        WordSorterExitCode.FILE_ALREADY_EXISTS,
-                        outputFile.getName());
-            }
+//            if (outputFile.exists() && outputFile.isFile()) {
+//                throw new WordSorterAppException(
+//                        WordSorterExitCode.FILE_ALREADY_EXISTS,
+//                        outputFile.getName());
+//            }
             try (InputStream inputStream = new FileInputStream(inputFile);
                  OutputStream outputStream = new FileOutputStream(outputFile)) {
-
 
                 InputStreamToListReader reader =
                         new InputStreamToListReader(inputStream);
@@ -54,17 +53,16 @@ public class Main {
             }
 
             IErrorHandler handler = errorHandlerMap.get(e.getClass());
-            if (handler == null) {
-                defaultHandler.handleException(WordSorterExitCode
-                        .UNEXPECTED_ERROR, e);
-            } else {
+            if (handler != null) {
                 if (e instanceof WordSorterAppException) {
                     handler.handleException(((WordSorterAppException) e)
                             .getExitCode(), e);
                 }
-                handler.handleException(exceptionExitCode
-                        .get(e.getClass()), e);
+                handler.handleException(exceptionExitCode.get(e.getClass()), e);
             }
+
+            defaultHandler.handleException(WordSorterExitCode
+                    .UNEXPECTED_ERROR, e);
         }
     }
 

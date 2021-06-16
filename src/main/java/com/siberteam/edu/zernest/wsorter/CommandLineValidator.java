@@ -23,6 +23,7 @@ public class CommandLineValidator {
                 "Output file for recording the result");
         options.addRequiredOption("c", "sortClass", true,
                 "Full qualified name of Sorter class");
+
         CommandLine cmd = parser.parse(options, args);
         inputFile = new File(cmd.getOptionValue("i"));
         outputFile = new File(cmd.getOptionValue("o"));
@@ -47,5 +48,16 @@ public class CommandLineValidator {
 
     public Class<?> getLoadedSorterClass() {
         return loadedSorterClass;
+    }
+
+    @Override
+    public String toString() {
+        return "CommandLineValidator" + "[" +
+                "options=" + options +
+                ", formatter=" + formatter +
+                ", inputFile=" + inputFile +
+                ", outputFile=" + outputFile +
+                ", loadedSorterClass=" + loadedSorterClass +
+                ']';
     }
 }

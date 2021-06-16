@@ -17,6 +17,7 @@ public class WordSorterAppException extends Exception {
     public String toString() {
         return "WordSorterAppException" + "[" +
                 "exitCode=" + exitCode +
+                "message=" + getMessage() +
                 ']';
     }
 }
