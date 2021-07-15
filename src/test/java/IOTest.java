@@ -3,6 +3,7 @@ import com.siberteam.edu.zernest.wsorter.ListToOutputStreamWriter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import sun.misc.IOUtils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -25,9 +26,7 @@ public class IOTest {
         expectedList.add("плюшкиным");
         expectedList.add("выезда");
 
-        File file = new File("/home/retw/IdeaProjects" +
-                "/word-sorter/src/main/resources/test.txt");
-
+        File file = new File("src/test/data/test.txt");
         try (InputStream inputStream = new FileInputStream(file)) {
             InputStreamToListReader reader =
                     new InputStreamToListReader(inputStream);
@@ -47,8 +46,7 @@ public class IOTest {
         expectedList.add("плюшкиным");
         expectedList.add("выезда");
 
-        File file = new File("/home/retw/IdeaProjects" +
-                "/word-sorter/src/main/resources/test2.txt");
+        File file = new File("src/test/data/test2.txt");
 
         try (OutputStream outputStream = new FileOutputStream(file);
              InputStream inputStream = new FileInputStream(file)) {
